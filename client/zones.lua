@@ -108,6 +108,22 @@ CreateThread(function()
     end
 end)
 
+function hasJob()
+    for _, v in ipairs(Config.Zones) do
+        for _, job in ipairs(v.job) do
+            local playerJob = ESX.PlayerData.job.name
+            --Wait(100) 
+            if playerJob == job then
+                print(job)
+                print(playerJob)
+                return true
+            else   
+                return false
+            end 
+        end
+    end
+end
+
 lib.callback.register('customs:client:zone', function()
     return zoneId
 end)
