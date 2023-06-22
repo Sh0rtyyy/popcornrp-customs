@@ -27,6 +27,23 @@ local function calculatePolyzoneCenter(vertices)
     return center
 end
 
+Citizen.CreateThread(function()
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+
+end)
+
+local PlayerData = nil
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	ESX.PlayerData.job = job
+end)
+
 CreateThread(function()
     for _, v in ipairs(Config.Zones) do
         lib.zones.poly({
