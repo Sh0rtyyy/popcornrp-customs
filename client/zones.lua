@@ -87,7 +87,7 @@ CreateThread(function()
                 lib.hideTextUI()
             end,
             inside = function()
-                if IsControlJustPressed(0, 38) and cache.vehicle and allowAccess then
+                if IsControlJustPressed(0, 38) and cache.vehicle and hasJob() then
                     SetEntityVelocity(cache.vehicle, 0.0, 0.0, 0.0)
                     lib.hideTextUI()
                     require('client.menus.main')()
@@ -112,10 +112,7 @@ function hasJob()
     for _, v in ipairs(Config.Zones) do
         for _, job in ipairs(v.job) do
             local playerJob = ESX.PlayerData.job.name
-            --Wait(100) 
             if playerJob == job then
-                print(job)
-                print(playerJob)
                 return true
             else   
                 return false
